@@ -1,6 +1,7 @@
 
 package com.example.quiz.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.example.quiz.entity.Quiz;
@@ -28,4 +29,7 @@ public interface QuizService {
 
     /** クイズを削除します */
     void deleteQuizById(Integer id);
+    
+    /** ランダムで10問取得 */
+    List<Quiz> selectTenRandomQuizzes();
 }

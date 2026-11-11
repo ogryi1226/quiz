@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>10問チャレンジ</title>
+</head>
+<body>
+
+<h1>10問チャレンジ</h1>
+<p th:if="${msg}" th:text="${msg}"></p>
+
+<p>全10問です。すべて回答してから送信してください。</p>
+
+<form th:action="@{/quiz/challenge/check}"
+      th:object="${quizChallengeForm}"
+      method="post">
+
+    <div th:each="quiz, stat : ${quizList}">
+        <h3>
+            第<span th:text="${stat.count}"></span>問
+        </h3>
+
+        <p th:text="${quiz.question}"></p>
+
+        <input type="hidden"
+               name="ids"
+               th:value="${quiz.id}">
+
+        <label>
+            <input type="radio"
+                   th:name="|answers[${stat.index}]|"
+                   value="true"
+                   required>
+            〇
+        </label>
+
+        <label>
+            <input type="radio"
+                   th:name="|answers[${stat.index}]|"
+                   value="false">
+            ×
+        </label>
+
+        <hr>
+    </div>
+
+    <button type="submit">10問まとめて回答する</button>
+
+</form>
+
+<p><a th:href="@{/}">トップ画面へ戻る</a></p>
+
+</body>
+</html>

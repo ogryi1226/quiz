@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>10問チャレンジ結果</title>
+</head>
+<body>
+
+<h1>10問チャレンジ結果</h1>
+
+<h2>
+    <span th:text="${score}"></span>問正解！
+</h2>
+
+<p>
+    全10問中
+    <span th:text="${score}"></span>問正解しました。
+</p>
+
+<p th:text="${msg}"></p>
+
+<h2>回答結果</h2>
+
+<table border="1">
+    <tr>
+        <th>問題</th>
+        <th>あなたの回答</th>
+        <th>正解</th>
+        <th>結果</th>
+    </tr>
+
+    <tr th:each="result : ${results}">
+        <td th:text="${result.question}"></td>
+        <td th:text="${result.myAnswer ? '〇' : '×'}"></td>
+        <td th:text="${result.correctAnswer ? '〇' : '×'}"></td>
+        <td th:text="${result.correct ? '正解' : '不正解'}"></td>
+    </tr>
+</table>
+
+<p>
+    <a th:href="@{/quiz/challenge}">もう一度挑戦する</a>
+</p>
+
+<p>
+    <a th:href="@{/}">トップ画面へ戻る</a>
+</p>
+
+</body>
+</html>

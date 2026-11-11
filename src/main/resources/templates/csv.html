@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CSV一括登録</title>
+</head>
+<body>
+
+<h1>CSV一括登録</h1>
+
+<p>登録するクイズの種類を選択してください。</p>
+
+<p th:if="${msg}" th:text="${msg}"></p>
+
+<form th:action="@{/quiz/csv/import}"
+      method="post"
+      enctype="multipart/form-data">
+
+    <p>
+        <label>
+            クイズの種類：
+            <select name="type" required>
+                <option value="two">2択クイズ</option>
+                <option value="four">4択クイズ</option>
+            </select>
+        </label>
+    </p>
+
+    <p>
+        <label>
+            CSVファイル：
+            <input type="file"
+                   name="file"
+                   accept=".csv"
+                   required>
+        </label>
+    </p>
+
+    <button type="submit">一括登録する</button>
+
+</form>
+
+<p><a th:href="@{/}">トップ画面へ戻る</a></p>
+
+</body>
+</html>

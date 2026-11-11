@@ -1,6 +1,7 @@
 
 package com.example.quiz.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +77,10 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void deleteQuizById(Integer id) {
         repository.deleteById(id);
+    }
+    
+    @Override
+    public List<Quiz> selectTenRandomQuizzes() {
+        return repository.getRandomQuizzes();
     }
 }
