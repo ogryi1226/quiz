@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>クイズアプリ</title>
+</head>
+<body>
+
+<h1>クイズアプリ</h1>
+
+<p>遊びたいクイズを選んでください。</p>
+
+<h2>クイズで遊ぶ</h2>
+
+<ul>
+    <li>
+        <a th:href="@{/quiz/play}">2択クイズ</a>
+    </li>
+    <li>
+        <a th:href="@{/quiz/four/play}">4択クイズ</a>
+    </li>
+    <li>
+        <a th:href="@{/quiz/challenge}">10問チャレンジ</a>
+    </li>
+</ul>
+
+<h2>クイズを管理する</h2>
+
+<ul>
+    <li>
+        <a th:href="@{/quiz}">2択クイズの登録・編集</a>
+    </li>
+    <li>
+        <a th:href="@{/quiz/four}">4択クイズの登録・編集</a>
+    </li>
+    <li>
+        <a th:href="@{/quiz/csv}">CSV一括登録</a>
+    </li>
+</ul>
+
+</body>
+</html>

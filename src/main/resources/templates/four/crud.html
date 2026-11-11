@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>4択クイズ管理</title>
+</head>
+<body>
+
+<h1>4択クイズ管理</h1>
+
+<p th:if="${complete}" th:text="${complete}"></p>
+<p th:if="${delcomplete}" th:text="${delcomplete}"></p>
+
+<h2 th:text="${title}">4択クイズ登録用フォーム</h2>
+
+<form th:action="${quizFourForm.newQuiz} ? @{/quiz/four/insert} : @{/quiz/four/update}"
+      th:object="${quizFourForm}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <p>
+        問題文：
+        <input type="text" th:field="*{question}">
+        <span th:errors="*{question}"></span>
+    </p>
+
+    <p>
+        選択肢1：
+        <input type="text" th:field="*{option1}">
+        <span th:errors="*{option1}"></span>
+    </p>
+
+    <p>
+        選択肢2：
+        <input type="text" th:field="*{option2}">
+        <span th:errors="*{option2}"></span>
+    </p>
+
+    <p>
+        選択肢3：
+        <input type="text" th:field="*{option3}">
+        <span th:errors="*{option3}"></span>
+    </p>
+
+    <p>
+        選択肢4：
+        <input type="text" th:field="*{option4}">
+        <span th:errors="*{option4}"></span>
+    </p>
+
+    <p>
+        正解：
+        <select th:field="*{answer}">
+            <option value="1">選択肢1</option>
+            <option value="2">選択肢2</option>
+            <option value="3">選択肢3</option>
+            <option value="4">選択肢4</option>
+        </select>
+        <span th:errors="*{answer}"></span>
+    </p>
+
+    <p>
+        作成者：
+        <input type="text" th:field="*{author}">
+        <span th:errors="*{author}"></span>
+    </p>
+
+    <button type="submit"
+            th:text="${quizFourForm.newQuiz} ? '登録' : '更新'">
+        登録
+    </button>
+</form>
+
+<hr>
+
+<h2>4択クイズ一覧</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>問題文</th>
+            <th>選択肢1</th>
+            <th>選択肢2</th>
+            <th>選択肢3</th>
+            <th>選択肢4</th>
+            <th>正解番号</th>
+            <th>作成者</th>
+            <th>編集</th>
+            <th>削除</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="quiz : ${list}">
+            <td th:text="${quiz.id}"></td>
+            <td th:text="${quiz.question}"></td>
+            <td th:text="${quiz.option1}"></td>
+            <td th:text="${quiz.option2}"></td>
+            <td th:text="${quiz.option3}"></td>
+            <td th:text="${quiz.option4}"></td>
+            <td th:text="${quiz.answer}"></td>
+            <td th:text="${quiz.author}"></td>
+
+            <td>
+                <a th:href="@{/quiz/four/edit/{id}(id=${quiz.id})}">
+                    編集
+                </a>
+            </td>
+
+            <td>
+                <form th:action="@{/quiz/four/delete}"
+                      method="post">
+                    <input type="hidden" name="id"
+                           th:value="${quiz.id}">
+                    <button type="submit">削除</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p><a th:href="@{/}">トップ画面へ戻る</a></p>
+
+</body>
+</html>

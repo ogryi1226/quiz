@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>4択クイズ</title>
+</head>
+<body>
+
+<h1>4択クイズ</h1>
+
+<p th:if="${msg}" th:text="${msg}"></p>
+
+<div th:if="${quizFourForm != null
+             and quizFourForm.id != null}">
+
+    <h2 th:text="${quizFourForm.question}"></h2>
+
+    <form th:action="@{/quiz/four/check}" method="post">
+
+        <input type="hidden" name="id"
+               th:value="${quizFourForm.id}">
+
+        <p>
+            <label>
+                <input type="radio" name="answer" value="1" required>
+                <span th:text="${quizFourForm.option1}"></span>
+            </label>
+        </p>
+
+        <p>
+            <label>
+                <input type="radio" name="answer" value="2">
+                <span th:text="${quizFourForm.option2}"></span>
+            </label>
+        </p>
+
+        <p>
+            <label>
+                <input type="radio" name="answer" value="3">
+                <span th:text="${quizFourForm.option3}"></span>
+            </label>
+        </p>
+
+        <p>
+            <label>
+                <input type="radio" name="answer" value="4">
+                <span th:text="${quizFourForm.option4}"></span>
+            </label>
+        </p>
+
+        <button type="submit">回答する</button>
+
+    </form>
+</div>
+
+<p>
+    <a th:href="@{/quiz/four}">4択クイズ一覧へ戻る</a>
+</p>
+
+<p>
+    <a th:href="@{/}">トップ画面へ戻る</a>
+</p>
+
+</body>
+</html>
